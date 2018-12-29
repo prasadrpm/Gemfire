@@ -1,5 +1,9 @@
 package com.gemfire.test;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +31,8 @@ public class PersonTest {
 		Person person = new Person(12,"arun");
 		reposiroty.save(person);
 		
-		
+		List<Person> list = (List<Person>) reposiroty.findAll();
+		assertEquals(1, list.size());
 	}
 
 }
