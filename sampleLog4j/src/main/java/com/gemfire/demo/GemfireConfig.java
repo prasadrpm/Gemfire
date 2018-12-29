@@ -2,20 +2,14 @@ package com.gemfire.demo;
 
 import java.util.Properties;
 
-import org.apache.geode.cache.Cache;
-import org.apache.geode.cache.CacheFactory;
 import org.apache.geode.cache.DataPolicy;
 import org.apache.geode.cache.GemFireCache;
-import org.apache.geode.cache.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.CacheFactoryBean;
 import org.springframework.data.gemfire.LocalRegionFactoryBean;
-import org.springframework.data.gemfire.ReplicatedRegionFactoryBean;
-import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
-import org.springframework.data.gemfire.config.annotation.ClientCacheApplication.Locator;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 
 @Configuration
@@ -32,6 +26,7 @@ public class GemfireConfig {
 		return properties;
 		
 	}
+
 
 	@Bean
 	@Autowired
