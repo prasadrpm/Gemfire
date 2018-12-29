@@ -1,6 +1,9 @@
 package com.gemfire.demo;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.gemfire.mapping.annotation.Region;
 
 import lombok.Data;
@@ -9,7 +12,7 @@ import lombok.Setter;
 
 @Data
 @Region(name="person")
-public class Person {
+public class Person implements Serializable{
 
 	@Id
 	@Getter
@@ -19,6 +22,7 @@ public class Person {
 	@Setter
 	private String name;
 	
+	@PersistenceConstructor
 	public Person(Integer id, String name) {
 		this.id=id;
 		this.name=name;

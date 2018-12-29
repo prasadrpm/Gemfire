@@ -12,12 +12,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.CacheFactoryBean;
+import org.springframework.data.gemfire.LocalRegionFactoryBean;
 import org.springframework.data.gemfire.ReplicatedRegionFactoryBean;
 import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
 import org.springframework.data.gemfire.config.annotation.ClientCacheApplication.Locator;
+import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 
 @Configuration
 @ComponentScan
+@EnableGemfireRepositories
 //@ClientCacheApplication(locators= {@Locator(host="localhost",port=10987)})
 public class GemfireConfig {
 	
@@ -38,15 +41,24 @@ public class GemfireConfig {
 		bean.setProperties(getGemfireProperties());
 		return bean;
 	}
-	@Bean
+	/*@Bean
 	@Autowired
 	ReplicatedRegionFactoryBean<Integer, Person> getPersonRegion(final GemFireCache cache){
 		ReplicatedRegionFactoryBean<Integer,Person> bean = new ReplicatedRegionFactoryBean<>();
 		bean.setCache(cache);
 		bean.setName("person");
 		bean.setPersistent(true);
-		bean.setDataPolicy(DataPolicy.DEFAULT);
+		bean.setDataPolicy(DataPolicy.PRELOADED);
+		return bean;
+	}*/
+	@Bean
+	@Autowired
+	LocalRegionFactoryBean<Integer, Person> getPersonRegion(final GemFireCache cache){
+		LocalRegionFactoryBean<Integer,Person> bean = new LocalRegionFactoryBean<>();
+		bean.setCache(cache);
+		bean.setName("person");
+		bean.setPersistent(true);
+		bean.setDataPolicy(DataPolicy.PRELOADED);
 		return bean;
 	}
-	
 }
