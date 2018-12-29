@@ -33,6 +33,7 @@ public class PersonTest {
 		
 		List<Person> list = (List<Person>) reposiroty.findAll();
 		assertEquals(1, list.size());
+		
 	}
 
 }
