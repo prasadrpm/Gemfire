@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
@@ -34,6 +33,17 @@ public class PersonTest {
 		List<Person> list = (List<Person>) reposiroty.findAll();
 		assertEquals(1, list.size());
 		
+	}
+	
+	@Test
+	public void findByName() {
+		String name = "prasad";
+		
+		Person p1 = new Person(13,name);
+		reposiroty.save(p1);
+		
+		Person  person2 = reposiroty.findByName("prasad");
+		assertEquals(name, person2.getName());
 	}
 
 }
