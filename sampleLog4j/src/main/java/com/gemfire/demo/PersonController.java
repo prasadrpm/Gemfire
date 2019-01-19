@@ -26,8 +26,12 @@ public class PersonController {
 		return personRepository.findByName(name).toString();
 	}
 	@RequestMapping(method=RequestMethod.POST,path="/count")
-	public Integer count(@RequestParam String name) {
+	public Integer count() {
 		return (int) personRepository.findAll().spliterator().estimateSize();
+	}
+	@RequestMapping(method=RequestMethod.POST,path="/deleteAll")
+	public void deleteAll() {
+		 personRepository.deleteAll();
 	}
 	
 }
